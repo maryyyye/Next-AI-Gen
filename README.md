@@ -2,6 +2,11 @@
 
 ## Sub-group
 - Mary Mohanasundaram DIA7
+- Ahmet Bugday DIA7
+- Matthieu Ropiteau DIA7
+- Cameron Prunet DIA7
+- Maram Lakhal DIA7
+- Alexis Dinanga DIA7
 
 
 ## Environment
