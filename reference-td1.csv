@@ -29,6 +29,13 @@ WHERE o.product_id IN ('a', 'b', 'c')
 C15,,
 C16,,
 C17,,
-C18,,
+C18,SELECT
+    COALESCE(SUM(o.quantity_product * p.price), 0) AS revenue_cents
+FROM orders o
+JOIN customers c ON o.customer_id = c.customer_id
+JOIN product p ON o.product_id = p.product_id
+WHERE o.date >= '2026-05-01 00:00:00'
+  AND o.date < '2026-06-01 00:00:00'
+  AND CAST((strftime('%Y%m%d', o.date) - strftime('%Y%m%d', c.birth_date)) / 10000 AS INT) = 25;,62480
 C19,,
 C20,,
