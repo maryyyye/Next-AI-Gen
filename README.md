@@ -1,12 +1,12 @@
 # Next-AI-Gen
 
-## Sub-group
-- Mary Mohanasundaram DIA7
-- Ahmet Bugday DIA7
-- Matthieu Ropiteau DIA7
-- Cameron Prunet DIA7
-- Maram Lakhal DIA7
-- Alexis Dinanga DIA7
+## Sub-group DIA7- Groupe 4
+- Mary Mohanasundaram 
+- Ahmet Bugday 
+- Matthieu Ropiteau 
+- Cameron Prunet 
+- Maram Lakhal 
+- Alexis Dinanga
 
 
 ## Environment
