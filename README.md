@@ -1,4 +1,4 @@
-# Next-AI-Gen_Mary_Mohanasundaram_DIA7
+# Next-AI-Gen
 
 ## Sub-group
 - Mary Mohanasundaram DIA7
