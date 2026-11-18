@@ -605,7 +605,7 @@ class Orchestrateur:
         question, as built by `atelier-vote.py`. Each proposal carries `provider`,
         `model_requested`, `value` (integer cents or None) and `verdict`
         (`executed` or `error`). No reference is passed in: the vote decides
-        first, the comparison with your reference comes after.
+        first, the comparison with your reference comes after.s
 
           1. Only executed proposals that carry a value vote. An error or an
              unavailable member stays in n and casts no vote.
@@ -624,7 +624,42 @@ class Orchestrateur:
         families, and look in your traces for a case where several models agree
         on a wrong value.
         """
-        raise NotImplementedError("vote_k_sur_n: to implement in TD 2 (see the procedure in the docstring).")
+        n = len(traces_question)
+        if k <= n // 2 or k > n:
+            raise ValueError("k must be a strict majority: n // 2 < k <= n")
+
+        seen = set()
+        counts = {}
+        models_by_value = {}
+        for proposal in traces_question:
+            identity = (proposal.provider, proposal.model_requested)
+            if identity in seen:
+                raise ValueError("Duplicate proposal: a model may not vote twice")
+            seen.add(identity)
+
+            if proposal.verdict == "executed" and proposal.value is not None:
+                value = proposal.value
+                counts[value] = counts.get(value, 0) + 1
+                models_by_value.setdefault(value, []).append(
+                    f"{proposal.provider}:{proposal.model_requested}"
+                )
+
+        largest_count = max(counts.values(), default=0)
+        for value in counts:
+            if counts[value] >= k:
+                return {
+                    "consensus": True,
+                    "value": value,
+                    "votes": counts[value],
+                    "models": models_by_value[value],
+                }
+
+        return {
+            "consensus": False,
+            "value": None,
+            "votes": largest_count,
+            "models": [],
+        }
 
 
 # ==========================================================================
